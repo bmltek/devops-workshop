@@ -62,6 +62,7 @@ resource "aws_subnet" "dpp-public-subnet-02" {
 resource "aws_subnet" "dpp-private-subnet-01" {
   vpc_id = aws_vpc.dpp-vpc.id
   cidr_block = "10.1.3.0/24"
+  availability_zone = "us-east-1a"
   tags = {
     Name = "dpp-private-subnet-01"
   }
@@ -71,6 +72,7 @@ resource "aws_subnet" "dpp-private-subnet-01" {
 resource "aws_subnet" "dpp-private-subnet-02" {
   vpc_id = aws_vpc.dpp-vpc.id
   cidr_block = "10.1.4.0/24"
+  availability_zone = "us-east-1b"
   tags = {
     Name = "dpp-private-subnet-02"
   }

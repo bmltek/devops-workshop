@@ -18,6 +18,7 @@
 3. Change the version number in the 
    ```sh 
    helm install ttrend ttrend-0.1.0.tgz
+   copy ttrend-0.1.0.tgz to the source code and commit to remote repo
    ```
 
 4. Create a jenkins job for the deployment 
@@ -31,6 +32,7 @@
             }
           }
         }
+        copy the above stage and add it to Jenkinsfile
    ```
 
 5. To list installed helm deployments

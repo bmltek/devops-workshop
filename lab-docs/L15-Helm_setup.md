@@ -20,18 +20,26 @@
    ```sh 
    helm repo list
    helm repo add stable https://charts.helm.sh/stable
+   given the repo name as' stable'
+   helm repo list
    helm repo update
-   helm search repo <helm-chart>
+   helm search repo <helm-chart> for example 'helm search repo jenkins'
    helm search repo stable
+   helm search repo mysql
+
    ```
 
 1. Install mysql charts on Kubernetes 
    ```sh 
    helm install demo-mysql stable/mysql 
+   'demo-mysql' is the helm cahrt name you want to give your local repo
+   'stable/mysql' where its available
+
    ```
 1. To pull the package from repo to local 
    ```sh 
    helm pull stable/mysql 
+   This will pull all the manifest file into our system
    ```
 
   *Once you have downloaded the helm chart, it comes as a zip file. You should extract it.* 
@@ -43,8 +51,10 @@
   - Chart.yaml
 
   If you'd like to change the chart, please update your templates directory  and modify the version (1.6.9 to 1.7.0) in the chart.yaml
+  'cat Chart.yaml' This will give you ther version of the helm chart
 
 then you can run the command to pack it after your update
+Change the service type of mysql to NodePort
 ```sh
  helm package mysql
 ```

@@ -11,10 +11,26 @@ tags ={
   Owner = "Bolanle"
 }
 }
+
+resource "null_resource" "download_key" {
+  triggers = {
+    private_key = tls_private_key.my_key.private_key_pem
+  }
+
+  provisioner "local-exec" {
+    command = <<EOT
+      echo "${tls_private_key.my_key.private_key_pem}" > deployer-key.pem
+      chmod 400 deployer-key.pem
+    EOT
+  }
+}
+
+
 resource "aws_instance" "dpp-server" {
-    ami = "ami-0e8a34246278c21e4"
+    ami = "ami-0fc5d935ebf8bc3bc"
     instance_type = "t2.micro"
-    key_name = aws_key_pair.deployer.key_name
+    #key_name = aws_key_pair.deployer.key_name
+    key_name = "my-key"
     vpc_security_group_ids = [aws_security_group.dpp-sg.id]
     subnet_id = aws_subnet.dpp-public-subnet-01.id 
   for_each = toset(["jenkins-master", "build-slave", "ansible"])
@@ -40,6 +56,13 @@ resource "aws_security_group" "dpp-sg" {
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
     }
+      ingress {
+    description      = "jenkins access to public"
+    from_port        = 8080
+    to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
 
   egress {
     from_port        = 0

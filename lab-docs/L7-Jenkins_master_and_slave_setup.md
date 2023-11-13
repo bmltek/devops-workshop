@@ -1,3 +1,18 @@
+# Jenkins Installation steps
+1. Add the Jenkins repo keys to system
+2. Add repository to system
+3. Install dependencies
+4. Install Jenkins
+
+# Maven setup on Jenkins-slave
+1. Update  the system
+2. install java
+3. Download Maven Packages
+4. extract it
+5. Add path to bash_profile (optional)
+
+# write the ansible playbook on vscode
+
 # Jenkins Master and Slave Setup
 
 1. Add credentials 

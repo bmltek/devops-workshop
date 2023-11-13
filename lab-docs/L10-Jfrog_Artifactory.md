@@ -3,9 +3,10 @@
 2. Generate an access token  with username  (username must be your email id)
 3. Add username and password under jenkins credentials   
 4. Install Artifactory plugin  
-5. Update Jenkinsfile with jar publish stage   
+5. Update Jenkinsfile with jar publish 
+collstage   
     ```sh 
-         def registry = 'https://valaxy01.jfrog.io'
+         def registry = 'https://bmltek01.jfrog.io/'
              stage("Jar Publish") {
             steps {
                 script {
